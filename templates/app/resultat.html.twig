@@ -1,0 +1,33 @@
+{% extends 'app.html.twig' %}
+
+{% block body %}
+
+
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Résultat de la recherche: {{ resultat|length }} joueur(s) </h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            {% for joueur in resultat %}
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Nom: {{ joueur.nom }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Prenom: {{ joueur.prenom }}</h6>
+                        <p class="card-text">Jeux :
+                            <ul style="list-style:none;margin-left:0;padding-left:0;">
+                            {% for jeu in joueur.jeux %}
+                                <li>- {{ jeu.nom }}</li>
+                            {% endfor %}
+                            </ul>
+
+                        </p>
+                        Email: <a href="" class="card-link"> {{ joueur.email }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'app.html.twig' %}
+
+{% block body %}
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Mes jeux</h1>
+        <h5>Ci-dessous la liste des jeux auxquels vous jouez</h5>
+    </div>
+
+    <div class="container">
+
+        {% if app.user.jeux is empty %}
+        <h3>Vous n'avez actuellement aucun jouer selectionné rendez-vous sur cette <a href="{{ path('form_jeu') }}">page</a> afin de mettre à jour vos jeux !</h3>
+        {% else %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom du jeu</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for game in app.user.getJeux() %}
+                <tr>
+                <th scope="row">{{ game.id }}</th>
+                <td>{{ game.nom }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+            <a href="{{ path('form_jeu') }}"><button type="button" class="btn btn-success">Ajouter un jeu</button></a>
+        {% endif %}
+
+    </div>
+
+{% endblock %}

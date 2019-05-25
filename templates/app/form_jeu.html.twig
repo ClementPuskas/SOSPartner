@@ -1,0 +1,37 @@
+{% extends 'app.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="text-center">
+            <img class="d-block mx-auto mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+            <h2>Bienvenue sur SOS Player</h2>
+            <p class="lead">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias dolor eaque, eum itaque laboriosam laborum magni nisi quia quos. Aliquam cupiditate dolorum iste natus neque odio praesentium! Dignissimos, rerum?
+            </p>
+        </div>
+        {{ form_start(form) }}
+        <div class="row">
+
+             {% for game in form.games.children%}
+                <div class="col-md-6 mt-3 mb-3">
+                    <div class="custom-control custom-block custom-control-success" data-children-count="1">
+                        <input type="checkbox" class="custom-control-input" id="{{ game.vars.id }}" name="{{ game.vars.full_name }}" value="{{ game.vars.name }}">
+                        <label class="custom-control-label" for="{{ game.vars.id }}">
+                                    <span class="d-block text-center">
+                                        <i class="fa fa-check fa-2x mb-2 text-black-50"></i><br>
+                                        {{ game.vars.label }}
+                                    </span>
+                        </label>
+                        <span class="custom-block-indicator">
+                        <i class="fa fa-check"></i>
+                    </span>
+                    </div>
+                </div>
+
+            {% endfor %}
+            <button class="btn btn-success btn-lg btn-block mt-5" type="submit">Suivant</button>
+        </div>
+        {{ form_end(form , {'render_rest': false}) }}
+    </div>
+
+{% endblock %}
